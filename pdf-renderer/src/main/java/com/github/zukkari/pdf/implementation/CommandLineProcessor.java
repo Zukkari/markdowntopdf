@@ -3,10 +3,15 @@ package com.github.zukkari.pdf.implementation;
 import com.github.zukkari.pdf.ChromeOptions;
 import com.github.zukkari.pdf.PdfProcessor;
 import com.github.zukkari.pdf.exception.RenderFailedException;
+import com.github.zukkari.pdf.util.Streams;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.UUID;
 
 public class CommandLineProcessor implements PdfProcessor {
@@ -35,9 +40,25 @@ public class CommandLineProcessor implements PdfProcessor {
 
             pb.start().waitFor();
 
-            return new FileInputStream(outFileId + ".pdf");
+            // Read into memory so we can delete the pdf
+            return convert();
         } catch (Exception e) {
             throw new RenderFailedException(e);
+        }
+    }
+
+    private InputStream convert() throws IOException {
+        File f = new File(outFileId + ".pdf");
+        try (InputStream fos = new FileInputStream(f)) {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            Streams.copy(fos, out);
+            ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+
+            // Delete the PDF to save the space ^_^
+            Files.delete(f.toPath());
+
+            return in;
         }
     }
 }

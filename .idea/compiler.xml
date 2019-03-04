@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="markdown-pdf-converter" />
         <module name="pdf-renderer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pdf-renderer" target="7" />
+      <module name="markdown-pdf-converter" target="8" />
+      <module name="pdf-renderer" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
