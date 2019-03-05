@@ -61,6 +61,7 @@ public class CommandLineProcessor implements PdfProcessor {
         }
     }
 
+    @Override
     public String getIdentifier() {
         return identifier;
     }
