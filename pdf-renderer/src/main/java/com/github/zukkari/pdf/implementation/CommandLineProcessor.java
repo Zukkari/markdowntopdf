@@ -12,16 +12,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.UUID;
 
 public class CommandLineProcessor implements PdfProcessor {
 
     private String chromeBinary;
     private File inputFile;
-    private String outFileId;
+    private String identifier;
 
-    public CommandLineProcessor(String chromeBinary, File inputFile) {
-        this.outFileId = UUID.randomUUID().toString();
+    public CommandLineProcessor(String chromeBinary, String identifier ,File inputFile) {
+        this.identifier = identifier;
         this.chromeBinary = chromeBinary;
         this.inputFile = inputFile;
     }
@@ -34,7 +33,7 @@ public class CommandLineProcessor implements PdfProcessor {
                     ChromeOptions.DISABLE_GPU,
                     ChromeOptions.ENABLE_LOGGING,
                     ChromeOptions.VERBOSITY_1,
-                    ChromeOptions.printToPdf(outFileId),
+                    ChromeOptions.printToPdf(identifier),
                     inputFile.toPath().toUri().toURL().toString())
                     .inheritIO();
 
@@ -48,7 +47,7 @@ public class CommandLineProcessor implements PdfProcessor {
     }
 
     private InputStream convert() throws IOException {
-        File f = new File(outFileId + ".pdf");
+        File f = new File(identifier + ".pdf");
         try (InputStream fos = new FileInputStream(f)) {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
 
