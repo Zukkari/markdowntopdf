@@ -1,7 +1,6 @@
 package com.github.zukkari.markdowntopdf;
 
 import com.github.zukkari.pdf.PdfProcessor;
-import com.github.zukkari.pdf.implementation.CommandLineProcessor;
 import com.github.zukkari.pdf.util.Streams;
 
 import java.io.File;
@@ -16,8 +15,6 @@ import java.util.UUID;
 
 public abstract class MarkdownConverter {
 
-    private static final String CHROME_BINARY = System.getProperty("chrome.binary");
-
     /**
      * Convert provided markdown input stream to html
      * @param os markdown stream
@@ -29,21 +26,23 @@ public abstract class MarkdownConverter {
      * Convert provided markdown stream into pdf
      * @param is markdown stream
      * @return pdf stream
-     * @throws IOException rendering failed / binary not found
+     * @throws IOException rendering / conversion failed
      */
     public final InputStream convert(PdfProcessor processor, InputStream is) throws IOException {
-        InputStream html = render(is);
-        File serialized = write(html);
+        String id = UUID.randomUUID().toString();
 
-        InputStream render = processor.render();
+        InputStream html = render(is);
+        File serialized = write(id, html);
+
+        InputStream render = processor.render(id, serialized);
 
         Files.delete(serialized.toPath());
 
         return render;
     }
 
-    private File write(InputStream html) throws IOException {
-        Path f = Files.createFile(Paths.get(UUID.randomUUID().toString() + ".html"));
+    private File write(String id, InputStream html) throws IOException {
+        Path f = Files.createFile(Paths.get(id + ".html"));
         try (OutputStream fos = new FileOutputStream(f.toFile())) {
             Streams.copy(html, fos);
         } finally {

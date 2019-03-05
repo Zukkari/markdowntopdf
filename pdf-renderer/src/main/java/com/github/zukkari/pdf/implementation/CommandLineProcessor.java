@@ -16,38 +16,34 @@ import java.nio.file.Files;
 public class CommandLineProcessor implements PdfProcessor {
 
     private String chromeBinary;
-    private File inputFile;
-    private String identifier;
 
-    public CommandLineProcessor(String chromeBinary, String identifier ,File inputFile) {
-        this.identifier = identifier;
+    public CommandLineProcessor(String chromeBinary) {
         this.chromeBinary = chromeBinary;
-        this.inputFile = inputFile;
     }
 
-
-    public InputStream render() {
+    @Override
+    public InputStream render(String id, File inputFile) {
         try {
             ProcessBuilder pb = new ProcessBuilder(chromeBinary,
                     ChromeOptions.HEADLESS,
                     ChromeOptions.DISABLE_GPU,
                     ChromeOptions.ENABLE_LOGGING,
                     ChromeOptions.VERBOSITY_1,
-                    ChromeOptions.printToPdf(identifier),
+                    ChromeOptions.printToPdf(id),
                     inputFile.toPath().toUri().toURL().toString())
                     .inheritIO();
 
             pb.start().waitFor();
 
             // Read into memory so we can delete the pdf
-            return convert();
+            return convert(id);
         } catch (Exception e) {
             throw new RenderFailedException(e);
         }
     }
 
-    private InputStream convert() throws IOException {
-        File f = new File(identifier + ".pdf");
+    private InputStream convert(String id) throws IOException {
+        File f = new File(id + ".pdf");
         try (InputStream fos = new FileInputStream(f)) {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -59,10 +55,5 @@ public class CommandLineProcessor implements PdfProcessor {
 
             return in;
         }
-    }
-
-    @Override
-    public String getIdentifier() {
-        return identifier;
     }
 }
