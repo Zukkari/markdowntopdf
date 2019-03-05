@@ -88,3 +88,4 @@ fabric.properties
 *.iml
 pdf-renderer/target
 .idea/
+/pdf-render-service/target/
