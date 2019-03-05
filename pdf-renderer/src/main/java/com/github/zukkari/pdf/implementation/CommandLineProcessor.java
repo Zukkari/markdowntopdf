@@ -60,4 +60,8 @@ public class CommandLineProcessor implements PdfProcessor {
             return in;
         }
     }
+
+    public String getIdentifier() {
+        return identifier;
+    }
 }

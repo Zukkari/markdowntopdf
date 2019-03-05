@@ -31,11 +31,10 @@ public abstract class MarkdownConverter {
      * @return pdf stream
      * @throws IOException rendering failed / binary not found
      */
-    public final InputStream convert(InputStream is) throws IOException {
+    public final InputStream convert(PdfProcessor processor, InputStream is) throws IOException {
         InputStream html = render(is);
         File serialized = write(html);
 
-        PdfProcessor processor = new CommandLineProcessor(CHROME_BINARY, serialized);
         InputStream render = processor.render();
 
         Files.delete(serialized.toPath());
