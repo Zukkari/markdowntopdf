@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-public class CommandLineProcessor implements PdfProcessor {
+public class ChromeRenderer implements PdfProcessor {
 
     private String chromeBinary;
 
-    public CommandLineProcessor(String chromeBinary) {
+    public ChromeRenderer(String chromeBinary) {
         this.chromeBinary = chromeBinary;
     }
 

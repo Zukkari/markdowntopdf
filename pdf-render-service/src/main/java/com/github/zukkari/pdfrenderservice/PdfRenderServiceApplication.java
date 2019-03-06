@@ -3,7 +3,7 @@ package com.github.zukkari.pdfrenderservice;
 import com.github.zukkari.markdowntopdf.MarkdownConverter;
 import com.github.zukkari.markdowntopdf.implementation.Flexmark;
 import com.github.zukkari.pdf.PdfProcessor;
-import com.github.zukkari.pdf.implementation.CommandLineProcessor;
+import com.github.zukkari.pdf.implementation.ChromeRenderer;
 import com.github.zukkari.stats.client.StatisticsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 public class PdfRenderServiceApplication {
     private Logger log = LoggerFactory.getLogger(PdfRenderServiceApplication.class);
 
-    @Value("${chrome.binary}")
+    @Value("${chrome.binary}:")
     private String chromeBinary;
 
     @Value("${stats.host}")
@@ -32,7 +32,7 @@ public class PdfRenderServiceApplication {
     @Bean
     public PdfProcessor commandLineProcessor() {
         log.info("Initializing command line pdf processor with binary path '{}'", chromeBinary);
-        return new CommandLineProcessor(chromeBinary);
+        return new ChromeRenderer(chromeBinary);
     }
 
     @Bean
