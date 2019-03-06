@@ -19,7 +19,7 @@ public class PdfRenderServiceApplication {
     @Value("${chrome.binary}")
     private String chromeBinary;
 
-    @Value("$stats.host")
+    @Value("${stats.host}")
     private String statsHost;
 
     @Value("${stats.token}")

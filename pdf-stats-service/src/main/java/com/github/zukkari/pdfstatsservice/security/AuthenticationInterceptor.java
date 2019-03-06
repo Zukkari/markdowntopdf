@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.HttpURLConnection;
 
 @Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
@@ -26,6 +27,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         boolean allowed = token.equals(headerValue);
         log.info("Header value is '{}'. Allowed to pass: {}", headerValue, allowed);
 
-        return !allowed;
+        if (!allowed) {
+            response.setStatus(HttpURLConnection.HTTP_UNAUTHORIZED);
+        }
+
+        return allowed;
     }
 }
