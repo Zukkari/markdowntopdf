@@ -17,6 +17,7 @@
         <module>pdf-renderer</module>
         <module>markdown-pdf-converter</module>
         <module>pdf-render-service</module>
+        <module>pdf-stats-service</module>
     </modules>
 
 </project>
