@@ -1,7 +1,7 @@
-package com.github.zukkari.pdfrenderservice.stats.service;
+package com.github.zukkari.pdfstatsservice.stats.service;
 
-import com.github.zukkari.pdfrenderservice.stats.data.Statistics;
-import com.github.zukkari.pdfrenderservice.stats.repository.StatisticsRepository;
+import com.github.zukkari.pdfstatsservice.stats.data.Statistics;
+import com.github.zukkari.pdfstatsservice.stats.repository.StatisticsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.github.zukkari.pdfrenderservice.stats.data;
+package com.github.zukkari.pdfstatsservice.stats.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

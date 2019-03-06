@@ -3,7 +3,6 @@ package com.github.zukkari.pdfrenderservice.controller;
 import com.github.zukkari.markdowntopdf.MarkdownConverter;
 import com.github.zukkari.pdf.PdfProcessor;
 import com.github.zukkari.pdf.util.Streams;
-import com.github.zukkari.pdfrenderservice.stats.service.StatsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -28,13 +26,11 @@ public class MarkdownToPdf {
 
     private PdfProcessor processor;
     private MarkdownConverter converter;
-    private StatsService statsService;
 
     @Autowired
-    public MarkdownToPdf(PdfProcessor processor, MarkdownConverter converter, StatsService service) {
+    public MarkdownToPdf(PdfProcessor processor, MarkdownConverter converter) {
         this.processor = processor;
         this.converter = converter;
-        this.statsService = service;
     }
 
     @PostMapping("/render/{fileName}")
@@ -55,8 +51,6 @@ public class MarkdownToPdf {
 
         long conversionEnd = System.currentTimeMillis();
         log.info("Conversion finished in {} ms", conversionEnd - conversionStart);
-
-        CompletableFuture.runAsync(() -> statsService.increment());
     }
 
     private String attachment(String fileName) {

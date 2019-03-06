@@ -89,3 +89,4 @@ fabric.properties
 pdf-renderer/target
 .idea/
 /pdf-render-service/target/
+/pdf-stats-service/target/
