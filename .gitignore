@@ -90,3 +90,4 @@ pdf-renderer/target
 .idea/
 /pdf-render-service/target/
 /pdf-stats-service/target/
+/pdf-stats-client/target/

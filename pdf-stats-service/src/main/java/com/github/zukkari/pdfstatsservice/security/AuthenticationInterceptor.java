@@ -1,5 +1,6 @@
 package com.github.zukkari.pdfstatsservice.security;
 
+import com.github.zukkari.stats.client.StatisticsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,16 +17,15 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Value("${auth.token}")
     private String token;
 
-    private static final String STATS_HEADER = "stats-auth";
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("Handling request {}", request);
-        String headerValue = request.getHeader(STATS_HEADER);
+        String header = request.getHeader(StatisticsClient.STATS_HEADER);
+        String headerValue = header == null ? "" : header;
 
-        boolean decision = token.equals(headerValue);
-        log.info("Header value is '{}'. Allowed to pass: {}", headerValue, decision);
+        boolean allowed = token.equals(headerValue);
+        log.info("Header value is '{}'. Allowed to pass: {}", headerValue, allowed);
 
-        return decision;
+        return !allowed;
     }
 }
