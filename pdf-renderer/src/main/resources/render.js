@@ -14,12 +14,17 @@ page.paperSize = {
     margin: '1cm'
 };
 
-page.zoomFactor = 0.75;
+
+var zoom = 0.75;
 
 page.open(address, function (status) {
    if (status !== 'success') {
        console.log('[PHANTOM] Unable to open address =>' + address)
    } else {
+       page.evaluate(function(zoom) {
+           document.getElementsByTagName('html')[0].style.zoom=zoom;
+       }, zoom);
+
        window.setTimeout(function () {
            console.log("[PHANTOM] Rendering pdf with id => " + out);
            page.render(out + ".pdf");
