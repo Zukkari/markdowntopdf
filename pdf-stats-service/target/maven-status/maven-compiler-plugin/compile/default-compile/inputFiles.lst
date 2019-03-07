@@ -1,9 +1,0 @@
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/stats/data/Statistics.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/controller/StatsController.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/stats/service/StatsService.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/stats/service/StatsCache.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/security/AuthenticationInterceptor.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/stats/repository/StatisticsRepository.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/PdfStatsServiceApplication.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/security/AuthenticationInterceptorAppConfig.java
-/home/zukkari/git/markdowntopdf/pdf-stats-service/src/main/java/com/github/zukkari/pdfstatsservice/stats/data/StatisticsDTO.java
