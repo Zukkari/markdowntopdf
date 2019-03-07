@@ -14,7 +14,6 @@
         <module>markdown-pdf-converter</module>
         <module>pdf-render-service</module>
         <module>pdf-stats-service</module>
-        <module>pdf-stats-client</module>
         <module>service-discovery</module>
     </modules>
 
