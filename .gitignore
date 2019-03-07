@@ -93,3 +93,4 @@ pdf-renderer/target
 /pdf-stats-client/target/
 /service-discovery/target/
 /service-gateway/target/
+/markdown-pdf-converter/target/
