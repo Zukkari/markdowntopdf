@@ -1,0 +1,3 @@
+com/github/zukkari/stats/client/exception/ConnectionFailure.class
+com/github/zukkari/stats/client/exception/InvalidRequestException.class
+com/github/zukkari/stats/client/StatisticsClient.class

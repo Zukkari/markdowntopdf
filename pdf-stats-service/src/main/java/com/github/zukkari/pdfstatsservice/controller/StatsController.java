@@ -1,7 +1,7 @@
 package com.github.zukkari.pdfstatsservice.controller;
 
-import com.github.zukkari.pdfstatsservice.stats.data.StatisticsDTO;
-import com.github.zukkari.pdfstatsservice.stats.service.StatsService;
+import com.github.zukkari.pdfstatsservice.stats.data.RenderCountDTO;
+import com.github.zukkari.pdfstatsservice.stats.service.RenderCountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatsController {
     private static final Logger log = LoggerFactory.getLogger(StatsController.class);
 
-    private StatsService service;
+    private RenderCountService service;
 
     @Autowired
-    public StatsController(StatsService service) {
+    public StatsController(RenderCountService service) {
         this.service = service;
     }
 
     @GetMapping
-    public StatisticsDTO stats() {
-        StatisticsDTO dto = new StatisticsDTO();
+    public RenderCountDTO stats() {
+        RenderCountDTO dto = new RenderCountDTO();
         dto.setCount(service.getCount());
         return dto;
     }
