@@ -1,0 +1,15 @@
+pre {
+    width: 100%;
+}
+
+code[class^="language"] {
+    color: #ffffff;
+    background: #000000;
+    display: inline-block;
+    width: 95%;
+    padding: 20px;
+    border-radius: 8px;
+    margin: auto;
+    font-family: "Fira Code", monospace;
+    font-size: 10pt;
+}

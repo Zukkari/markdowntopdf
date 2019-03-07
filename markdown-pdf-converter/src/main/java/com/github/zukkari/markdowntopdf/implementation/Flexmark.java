@@ -1,6 +1,7 @@
 package com.github.zukkari.markdowntopdf.implementation;
 
 import com.github.zukkari.markdowntopdf.MarkdownConverter;
+import com.github.zukkari.markdowntopdf.PageFinalizer;
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension;
 import com.vladsch.flexmark.ext.tables.TablesExtension;
 import com.vladsch.flexmark.html.HtmlRenderer;
@@ -20,12 +21,17 @@ public class Flexmark extends MarkdownConverter {
     private static final Charset charset = Charset.forName("UTF-8");
     private final Parser parser;
     private final HtmlRenderer renderer;
+    private final PageFinalizer finalizer;
 
-    public Flexmark() {
+    private final String cssFile;
+
+    public Flexmark(String cssFile) {
         MutableDataSet options = getOptions();
 
         this.parser = Parser.builder(options).build();
         this.renderer = HtmlRenderer.builder(options).build();
+        this.finalizer = new PageFinalizer();
+        this.cssFile = cssFile;
     }
 
     private MutableDataSet getOptions() {
@@ -40,7 +46,7 @@ public class Flexmark extends MarkdownConverter {
         Reader reader = new InputStreamReader(os, charset);
 
         Node document = parser.parseReader(reader);
-        String html = renderer.render(document);
+        String html = finalizer.finalizePage(cssFile, renderer.render(document));
 
         return new ByteArrayInputStream(html.getBytes(charset));
     }

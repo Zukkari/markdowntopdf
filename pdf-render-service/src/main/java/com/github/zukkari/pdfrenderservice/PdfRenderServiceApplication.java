@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -28,6 +27,9 @@ public class PdfRenderServiceApplication {
     @Value("${phantom.script:}")
     private String phantomScript;
 
+    @Value("${phantom.style:}")
+    private String phantomStyle;
+
 
     public static void main(String[] args) {
         SpringApplication.run(PdfRenderServiceApplication.class, args);
@@ -42,7 +44,7 @@ public class PdfRenderServiceApplication {
     @Bean
     public MarkdownConverter flexmark() {
         log.info("Initializing markdown flexmark converter");
-        return new Flexmark();
+        return new Flexmark(phantomStyle);
     }
 
     @Bean
