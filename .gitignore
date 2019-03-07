@@ -92,3 +92,4 @@ pdf-renderer/target
 /pdf-stats-service/target/
 /pdf-stats-client/target/
 /service-discovery/target/
+/service-gateway/target/
