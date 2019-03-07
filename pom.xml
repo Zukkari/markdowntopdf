@@ -15,6 +15,7 @@
         <module>pdf-render-service</module>
         <module>pdf-stats-service</module>
         <module>service-discovery</module>
+        <module>service-gateway</module>
     </modules>
 
 </project>
