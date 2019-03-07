@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/v1/")
 public class MarkdownToPdf {
     private static final Logger log = LoggerFactory.getLogger(MarkdownToPdf.class);
 
@@ -37,7 +37,7 @@ public class MarkdownToPdf {
         this.countService = countService;
     }
 
-    @PostMapping("/render/{fileName}")
+    @PostMapping("/{fileName}")
     public void convert(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
         InputStream in = copyToMemory(request);
 

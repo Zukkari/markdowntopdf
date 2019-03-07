@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/stats")
-public class StatsController {
-    private static final Logger log = LoggerFactory.getLogger(StatsController.class);
+@RequestMapping("/v1")
+public class RenderCountController {
+    private static final Logger log = LoggerFactory.getLogger(RenderCountController.class);
 
     private RenderCountService service;
 
     @Autowired
-    public StatsController(RenderCountService service) {
+    public RenderCountController(RenderCountService service) {
         this.service = service;
     }
 

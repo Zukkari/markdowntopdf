@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class PdfCountService {
     private static final Logger log = LoggerFactory.getLogger(PdfCountService.class);
-    private static final String SERVICE_URI = "/pdf-stats/api/v1/stats";
+    private static final String SERVICE_URI = "/pdf-stats/v1/";
 
     @Value("${router.service:Router}")
     private String router;
