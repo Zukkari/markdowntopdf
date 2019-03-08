@@ -5,4 +5,8 @@ public class RenderFailedException extends RuntimeException {
     public RenderFailedException(Exception e) {
         super(e);
     }
+
+    public RenderFailedException(String message) {
+        super(message);
+    }
 }

@@ -5,6 +5,7 @@ import com.github.zukkari.pdf.exception.RenderFailedException;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 public class PhantomRenderer implements PdfProcessor {
     private String phantomBinary;
@@ -26,7 +27,11 @@ public class PhantomRenderer implements PdfProcessor {
                     .inheritIO()
                     .start();
 
-            proc.waitFor();
+            boolean finished = proc.waitFor(30, TimeUnit.SECONDS);
+            if (!finished) {
+                proc.destroy();
+                throw new RenderFailedException("Rendering took way too long...");
+            }
 
             return convert(id);
         } catch (Exception e) {
