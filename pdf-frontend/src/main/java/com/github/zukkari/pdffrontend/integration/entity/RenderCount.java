@@ -1,8 +1,8 @@
-package com.github.zukkari.pdfstatsservice.stats.data;
+package com.github.zukkari.pdffrontend.integration.entity;
 
 import java.math.BigInteger;
 
-public class RenderCountDTO {
+public class RenderCount {
     private BigInteger count;
 
     public BigInteger getCount() {

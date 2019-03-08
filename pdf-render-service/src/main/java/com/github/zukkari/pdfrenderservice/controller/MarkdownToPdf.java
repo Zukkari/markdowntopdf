@@ -37,7 +37,7 @@ public class MarkdownToPdf {
         this.countService = countService;
     }
 
-    @PostMapping("/{fileName}")
+    @PostMapping("/render/{fileName}")
     public void convert(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
         InputStream in = copyToMemory(request);
 

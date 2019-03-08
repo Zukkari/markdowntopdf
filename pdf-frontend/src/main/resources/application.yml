@@ -1,0 +1,14 @@
+server:
+  port: 8000
+
+spring:
+  thymeleaf:
+    cache: false
+
+service:
+  router:
+    http://localhost:9001/
+  render:
+    uri: render/v1/render/
+  count:
+    uri: pdf-stats/v1/stats/

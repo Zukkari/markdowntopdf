@@ -3,7 +3,7 @@ package com.github.zukkari.pdfstatsservice.stats.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 public class RenderCount {
@@ -12,17 +12,17 @@ public class RenderCount {
     private Long id = 1L;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal count;
+    private BigInteger count;
 
-    public BigDecimal getCount() {
+    public BigInteger getCount() {
         return count;
     }
 
     public RenderCount increment() {
-        return RenderCount.of(this.count.add(BigDecimal.ONE));
+        return RenderCount.of(this.count.add(BigInteger.ONE));
     }
 
-    public static RenderCount of(BigDecimal count) {
+    public static RenderCount of(BigInteger count) {
         RenderCount renderCount = new RenderCount();
         renderCount.count = count;
         return renderCount;

@@ -94,3 +94,4 @@ pdf-renderer/target
 /service-discovery/target/
 /service-gateway/target/
 /markdown-pdf-converter/target/
+/pdf-frontend/target/

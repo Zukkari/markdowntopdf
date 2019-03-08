@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/stats")
 public class RenderCountController {
     private static final Logger log = LoggerFactory.getLogger(RenderCountController.class);
 

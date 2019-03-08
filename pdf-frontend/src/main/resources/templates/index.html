@@ -1,0 +1,57 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="pdfCount" type="java.lang.String"*/-->
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown to pdf converter</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header"></div>
+
+<main>
+    <div id="index-banner">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <h1 class="header center black-text text-lighten-2">Markdown to PDF converter</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">Convert markdown to pdf with no effort</h5>
+                </div>
+                <div class="row center">
+                    <a class="btn-large waves-effect waves-light black lighten-1">Upload</a>
+                </div>
+                <br><br>
+            </div>
+        </div>
+        <div class="section no-pad-bot">
+            <div class="container">
+                <h5 class="header center black-text text-lighten-2">Total markdown files converted</h5>
+                <div class="row center">
+                    <h2 class="header center black-text text-lighten-2" th:text="${pdfCount}"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="fragments/footer"></div>
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
