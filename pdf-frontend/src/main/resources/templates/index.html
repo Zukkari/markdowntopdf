@@ -1,57 +1,165 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--/*@thymesVar id="pdfCount" type="java.lang.String"*/-->
+<!--/*@thymesVar id="pdfCount" type="java.lang.BigInteger"*/-->
 <head>
     <meta charset="UTF-8">
     <title>Markdown to pdf converter</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/semantic.css" th:href="@{/static/css/semantic.css}">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
+        .hidden.menu {
+            display: none;
         }
 
-        main {
-            flex: 1 0 auto;
+        .masthead.segment {
+            min-height: 700px;
+            padding: 1em 0em;
+        }
+
+        .masthead .logo.item img {
+            margin-right: 1em;
+        }
+
+        .masthead .ui.menu .ui.button {
+            margin-left: 0.5em;
+        }
+
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0;
+            font-size: 4em;
+            font-weight: normal;
+        }
+
+        .masthead h3.ui.header {
+            margin-top: 4em;
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .masthead h2.ui.header {
+            margin-bottom: 0;
+            font-size: 4em;
+            font-weight: normal;
+        }
+
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+
+        .ui.vertical.stripe h3 {
+            font-size: 2em;
+        }
+
+        .ui.vertical.stripe .button + h3,
+        .ui.vertical.stripe p + h3 {
+            margin-top: 3em;
+        }
+
+        .ui.vertical.stripe .floated.image {
+            clear: both;
+        }
+
+        .ui.vertical.stripe p {
+            font-size: 1.33em;
+        }
+
+        .ui.vertical.stripe .horizontal.divider {
+            margin: 3em 0em;
+        }
+
+        .quote.stripe.segment {
+            padding: 0em;
+        }
+
+        .quote.stripe.segment .grid .column {
+            padding-top: 5em;
+            padding-bottom: 5em;
+        }
+
+        .footer.segment {
+            padding: 1em 0 5em;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .secondary.pointing.menu .toc.item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .ui.fixed.menu {
+                display: none !important;
+            }
+
+            .secondary.pointing.menu .item,
+            .secondary.pointing.menu .menu {
+                display: none;
+            }
+
+            .secondary.pointing.menu .toc.item {
+                display: block;
+            }
+
+            .masthead.segment {
+                min-height: 350px;
+            }
+
+            .masthead h1.ui.header {
+                font-size: 2em;
+                margin-top: 1.5em;
+            }
+
+            .masthead h2 {
+                margin-top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+
+        .ui.button {
+            margin-left: 0.5em !important;
         }
     </style>
 </head>
-<body>
-<div th:replace="fragments/header"></div>
+<body class="pushable">
 
-<main>
-    <div id="index-banner">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <br><br>
-                <h1 class="header center black-text text-lighten-2">Markdown to PDF converter</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">Convert markdown to pdf with no effort</h5>
-                </div>
-                <div class="row center">
-                    <a class="btn-large waves-effect waves-light black lighten-1">Upload</a>
-                </div>
-                <br><br>
+<div class="pusher">
+    <div th:replace="fragments/header"></div>
+
+
+    <div class="ui vertical masthead center aligned segment">
+        <div class="ui text container">
+            <h1 class="ui header masthead">
+                Markdown to PDF
+            </h1>
+            <h4 class="ui header masthead">Convert you markdown files to PDF with no effort</h4>
+            <div class="ui huge primary button">
+                Upload file
             </div>
-        </div>
-        <div class="section no-pad-bot">
-            <div class="container">
-                <h5 class="header center black-text text-lighten-2">Total markdown files converted</h5>
-                <div class="row center">
-                    <h2 class="header center black-text text-lighten-2" th:text="${pdfCount}"></h2>
-                </div>
-            </div>
+
+            <h3 class="ui header masthead">
+                Total markdown files converted
+            </h3>
+            <h2 class="ui header masthead" th:text="${pdfCount}"></h2>
         </div>
     </div>
-</main>
 
-<div th:replace="fragments/footer"></div>
+    <div th:replace="fragments/footer"></div>
+</div>
 
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="../static/js/semantic.js" th:src="@{/static/js/semantic.js}"></script>
 </body>
 </html>
