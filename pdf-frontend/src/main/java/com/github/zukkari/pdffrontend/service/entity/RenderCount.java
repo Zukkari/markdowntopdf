@@ -1,4 +1,4 @@
-package com.github.zukkari.pdffrontend.integration.entity;
+package com.github.zukkari.pdffrontend.service.entity;
 
 import java.math.BigInteger;
 

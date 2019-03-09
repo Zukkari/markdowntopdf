@@ -9,6 +9,6 @@ service:
   router:
     http://localhost:9001/
   render:
-    uri: render/v1/render/
+    uri: render/v1/render/{fileName}
   count:
     uri: pdf-stats/v1/stats/

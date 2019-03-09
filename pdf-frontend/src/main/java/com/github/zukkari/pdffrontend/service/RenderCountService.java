@@ -1,6 +1,6 @@
-package com.github.zukkari.pdffrontend.integration;
+package com.github.zukkari.pdffrontend.service;
 
-import com.github.zukkari.pdffrontend.integration.entity.RenderCount;
+import com.github.zukkari.pdffrontend.service.entity.RenderCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

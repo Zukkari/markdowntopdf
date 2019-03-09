@@ -144,9 +144,11 @@
                 Markdown to PDF
             </h1>
             <h4 class="ui header masthead">Convert you markdown files to PDF with no effort</h4>
-            <div class="ui huge primary button">
-                Upload file
-            </div>
+
+            <form id="upload" method="post" enctype="multipart/form-data" action="/">
+            <label for="fileUpload" class="ui huge primary button">Upload file</label>
+            <input id="fileUpload" name="file" th:type="file" style="display: none">
+            </form>
 
             <h3 class="ui header masthead">
                 Total markdown files converted
@@ -161,5 +163,10 @@
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script type="text/javascript" src="../static/js/semantic.js" th:src="@{/static/js/semantic.js}"></script>
+<script>
+    $('#upload').change(function () {
+        $('#upload').submit();
+    });
+</script>
 </body>
 </html>
