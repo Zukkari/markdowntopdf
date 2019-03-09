@@ -95,3 +95,5 @@ pdf-renderer/target
 /service-gateway/target/
 /markdown-pdf-converter/target/
 /pdf-frontend/target/
+/pdf-frontend/src/main/resources/static/css/semantic.css
+/pdf-frontend/src/main/resources/static/js/semantic.js
