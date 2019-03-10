@@ -11,10 +11,11 @@
 
     <modules>
         <module>pdf-renderer</module>
-        <module>markdown-pdf-converter</module>
         <module>pdf-render-service</module>
         <module>pdf-stats-service</module>
+        <module>pdf-frontend</module>
         <module>service-discovery</module>
+        <module>markdown-pdf-converter</module>
         <module>service-gateway</module>
     </modules>
 
