@@ -7,12 +7,3 @@ services:
 before_script:
   - psql -c "create database pdf;" -U postgres
   - psql -c "ALTER USER postgres WITH PASSWORD 'postgres';" -U postgres
-
-
-script: "mvn cobertura:cobertura"
-
-install:
-  - sudo pip install codecov
-
-after_success:
-  - codecov
