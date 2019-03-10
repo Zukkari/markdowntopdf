@@ -11,5 +11,8 @@ before_script:
 
 script: "mvn cobertura:cobertura"
 
+install:
+  - pip install codecov
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
