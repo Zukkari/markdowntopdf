@@ -12,7 +12,7 @@ before_script:
 script: "mvn cobertura:cobertura"
 
 install:
-  - pip install codecov
+  - sudo pip install codecov
 
 after_success:
   - codecov
