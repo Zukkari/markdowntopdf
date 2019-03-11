@@ -53,14 +53,13 @@ public class PdfFormController {
 
         Resource render = renderService.render(content, originalFilename);
 
-        HttpHeaders respHeaders = new HttpHeaders();
-        respHeaders.setContentType(MediaType.APPLICATION_PDF);
-        respHeaders.setContentLength(render.contentLength());
-        respHeaders.setContentDispositionFormData("attachment", render.getFilename());
-
         long end = System.currentTimeMillis();
         log.info("Rendering finished in {} ms", end - start);
 
-        return new ResponseEntity<>(render, respHeaders, HttpStatus.OK);
+        return ResponseEntity.ok()
+                .contentLength(render.contentLength())
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + render.getFilename() + "\"")
+                .body(render);
     }
 }
