@@ -10,7 +10,7 @@ public final class Streams {
     }
 
     public static void copy(InputStream in, OutputStream out) throws IOException  {
-        byte[] buff = new byte[4096];
+        byte[] buff = new byte[1048576];
         int read;
         while ((read = in.read(buff)) != -1) {
             out.write(buff, 0, read);
