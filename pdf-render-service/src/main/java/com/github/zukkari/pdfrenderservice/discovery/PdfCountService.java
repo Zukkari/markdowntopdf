@@ -17,7 +17,8 @@ public class PdfCountService {
         this.restTemplate = restTemplate;
     }
 
-    public void incrementPdfCount() {log.info("Started pdf count increment request");
+    public void incrementPdfCount() {
+        log.info("Started pdf count increment request");
         long start = System.currentTimeMillis();
         try {
             restTemplate.postForLocation("http://RenderCountService/v1/stats", null);

@@ -6,10 +6,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class PageFinalizer {
+    private final String cssFile;
+    private String style;
 
-    public String finalizePage(String cssFile, String html) {
+    public PageFinalizer(String cssFile) {
+        this.cssFile = cssFile;
+    }
 
-        return "<html><head><meta charset=\"UTF-8\"><style>" + readStyle(cssFile) +
+    public String finalizePage(String html) {
+
+        return "<html><head><meta charset=\"UTF-8\"><style>" + (style == null ? readStyle(cssFile) : style) +
                 "</style></head><body>" +
                 html +
                 "</body></html>";
@@ -18,7 +24,8 @@ public class PageFinalizer {
     private String readStyle(String cssFile) {
         try {
             byte[] cssBytes = Files.readAllBytes(Paths.get(cssFile));
-            return new String(cssBytes, StandardCharsets.UTF_8);
+            style = new String(cssBytes, StandardCharsets.UTF_8);
+            return style;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

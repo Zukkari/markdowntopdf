@@ -1,6 +1,7 @@
 package com.github.zukkari.pdfrenderservice;
 
 import com.github.zukkari.markdowntopdf.MarkdownConverter;
+import com.github.zukkari.markdowntopdf.PageFinalizer;
 import com.github.zukkari.markdowntopdf.implementation.Flexmark;
 import com.github.zukkari.pdf.PdfProcessor;
 import com.github.zukkari.pdf.implementation.PhantomRenderer;
@@ -43,9 +44,14 @@ public class PdfRenderServiceApplication {
     }
 
     @Bean
-    public MarkdownConverter flexmark() {
+    public MarkdownConverter flexmark(PageFinalizer finalizer) {
         log.info("Initializing markdown flexmark converter");
-        return new Flexmark(phantomStyle);
+        return new Flexmark(finalizer);
+    }
+
+    @Bean
+    public PageFinalizer pageFinalizer() {
+        return new PageFinalizer(phantomStyle);
     }
 
     @Bean

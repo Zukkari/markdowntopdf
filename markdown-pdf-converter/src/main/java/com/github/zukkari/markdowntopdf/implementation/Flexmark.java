@@ -23,15 +23,12 @@ public class Flexmark extends MarkdownConverter {
     private final HtmlRenderer renderer;
     private final PageFinalizer finalizer;
 
-    private final String cssFile;
-
-    public Flexmark(String cssFile) {
+    public Flexmark(PageFinalizer finalizer) {
         MutableDataSet options = getOptions();
 
         this.parser = Parser.builder(options).build();
         this.renderer = HtmlRenderer.builder(options).build();
-        this.finalizer = new PageFinalizer();
-        this.cssFile = cssFile;
+        this.finalizer = finalizer;
     }
 
     private MutableDataSet getOptions() {
@@ -46,7 +43,7 @@ public class Flexmark extends MarkdownConverter {
         Reader reader = new InputStreamReader(os, charset);
 
         Node document = parser.parseReader(reader);
-        String html = finalizer.finalizePage(cssFile, renderer.render(document));
+        String html = finalizer.finalizePage(renderer.render(document));
 
         return new ByteArrayInputStream(html.getBytes(charset));
     }
