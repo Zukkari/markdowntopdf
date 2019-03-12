@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+  datasource:
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/pdf
+    driver-class-name: org.postgresql.Driver
+
+  application:
+    name: RenderCountService
+
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        ${EUREKA_URI:http://localhost:8761/eureka}
