@@ -1,0 +1,85 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="pdfCount" type="java.lang.BigInteger"*/-->
+<head>
+    <meta charset="UTF-8">
+    <!--/*@thymesVar id="lblink" type="java.lang.String"*/-->
+    <meta id="lb-link" th:value="${lblink}">
+    <title>Markdown to pdf converter</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="pushable">
+
+<div class="pusher">
+    <div th:replace="fragments/header"></div>
+
+
+    <div class="ui vertical masthead center aligned segment">
+        <div class="ui text container">
+            <!--/*@thymesVar id="statusCode" type="java.lang.String"*/-->
+            <h1 class="ui header masthead">Starting up<span id="loading-dots"></span></h1>
+            <div>
+                The application is starting up! You will be redirected when everything is ready!
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer"></div>
+</div>
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    setInterval(function () {
+        const loadingElement = document.getElementById("loading-dots");
+        if (!loadingElement) {
+            return
+        }
+
+        const count = loadingElement.childElementCount;
+        if (count > 2) {
+            while (loadingElement.firstChild) {
+                loadingElement.removeChild(loadingElement.firstChild)
+            }
+
+            return;
+        }
+
+        const spanElement = document.createElement('span');
+        spanElement.innerText = '.';
+
+        loadingElement.appendChild(spanElement);
+    }, 1000);
+
+    setInterval(function () {
+        const linkElement = document.getElementById("lb-link");
+
+        if (!linkElement) return;
+
+        const link = linkElement.getAttribute("value");
+        fetch(link)
+            .then(function (value) {
+                return value.json();
+            })
+            .then(function (value) {
+                if (value !== -1) {
+                    location.reload();
+                } else {
+                    console.log("Service still down...", value);
+                }
+            })
+            .catch(function (reason) {
+                console.error("Service still down...", reason)
+            })
+    }, 10000);
+</script>
+</body>
+</html>

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,6 +39,16 @@ public class PdfFormController {
     public String index(Model model) throws URISyntaxException {
         model.addAttribute("pdfCount", countService.getCount());
         return "index.html";
+    }
+
+    @GetMapping("/status")
+    @ResponseBody
+    public int statusCheck() {
+        try {
+            return countService.getCount().intValue();
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     @PostMapping
