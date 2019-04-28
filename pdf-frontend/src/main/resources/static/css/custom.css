@@ -116,3 +116,9 @@
 .ui.button {
     margin-left: 0.5em !important;
 }
+
+.gradient {
+    background: #F3904F !important;
+    background: -webkit-linear-gradient(to right, #3B4371, #F3904F) !important;
+    background: linear-gradient(to right, #3B4371, #F3904F) !important;
+}
