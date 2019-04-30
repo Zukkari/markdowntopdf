@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -78,7 +79,8 @@ public class MarkdownToPdfTest {
 
         // Verify that incrementation call has been dispatched and dont do any network calls when testing
         doNothing().when(service).incrementPdfCount();
-        verify(service).incrementPdfCount();
+
+        verify(service, timeout(10000L)).incrementPdfCount();
     }
 
     class TestStream extends InputStream {
