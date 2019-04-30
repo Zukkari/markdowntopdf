@@ -1,10 +1,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="attr_authenticated" type="java.lang.Boolean"*/-->
+<!--/*@thymesVar id="attr_username" type="java.lang.String"*/-->
 
 <div class="ui inverted vertical header segment" th:fragment="header">
     <div class="ui large secondary pointing menu">
-        <div class="right item">
-            <a class="ui inverted button" href="/auth/login">Log in</a>
-            <a class="ui inverted button" href="/auth/signup">Sign Up</a>
+        <div class="right item" th:if="${attr_authenticated}">
+            <div class="ui inverted list">
+                <div class="item">
+                    <div class="ui top aligned avatar image">
+                        <img src="https://semantic-ui.com/images/wireframe/square-image.png" alt="wireframe-square">
+                    </div>
+                    <div class="inverted content">
+                        <div class="header">Logged in as</div>
+                        <div class="ui inverted header" th:text="${attr_username}"></div>
+                    </div>
+                </div>
+            </div>
+            <a href="/logout">
+                <div class="ui inverted button">Logout</div>
+            </a>
+        </div>
+        <div class="right item" th:unless="${attr_authenticated}">
+            <a class="ui inverted button" href="/login">Log in</a>
+            <a class="ui inverted button" href="/signup">Sign Up</a>
         </div>
     </div>
 </div>
