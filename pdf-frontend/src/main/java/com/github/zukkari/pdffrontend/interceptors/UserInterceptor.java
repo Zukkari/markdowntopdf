@@ -38,7 +38,7 @@ public class UserInterceptor implements HandlerInterceptor {
             return;
         }
 
-        log.info("User is authenticated or is an anonymous user, adding authentication details...");
+
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails) {
             UserDetails details = (UserDetails) principal;

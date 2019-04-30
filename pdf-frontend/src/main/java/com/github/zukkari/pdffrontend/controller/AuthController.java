@@ -4,7 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AuthenticationController {
+public class AuthController {
+
+    @GetMapping("/login")
+    public String login() {
+        return "auth/login.html";
+    }
 
     @GetMapping("/signup")
     public String register() {
