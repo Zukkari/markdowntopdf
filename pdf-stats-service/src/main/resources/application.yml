@@ -1,16 +1,22 @@
-spring:
-  jpa:
-    database: postgresql
-    hibernate:
-      ddl-auto: update
-  datasource:
-    password: postgres
-    username: postgres
-    url: jdbc:postgresql://localhost:5432/pdf
-    driver-class-name: org.postgresql.Driver
+#spring:
+#  jpa:
+#    database: postgresql
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    password: postgres
+#    username: postgres
+#    url: jdbc:postgresql://localhost:5432/pdf
+#    driver-class-name: org.postgresql.Driver
 
+spring:
   application:
     name: RenderCountService
+
+  jpa:
+    database: h2
+  datasource:
+    url: jdbc:h2:mem:pdf
 
 eureka:
   client:
